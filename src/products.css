@@ -1,0 +1,42 @@
+.product-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.edit-button {
+  background-color: #007bff; /* Example color */
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #0056b3; /* Slightly darker on hover */
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  flex-grow: 1; /* Input takes up available space */
+  padding: 8px;
+  border: 1px solid #ddd;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.search-bar select,
+.search-bar button {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "sku": 123456,
+    "name": "product 1 name",
+    "description": "product 1 description",
+    "type": "type A",
+    "manufacturer": "manufacturer A",
+    "price": "9.99"
+  },
+  {
+    "id": 2,
+    "sku": 456789,
+    "name": "product 2 name",
+    "description": "product 2 description",
+    "type": "type A",
+    "manufacturer": "manufacturer b",
+    "price": "12.99"
+  },
+  {
+    "id": 3,
+    "sku": 931484,
+    "name": "product 3 name",
+    "description": "product 3 description",
+    "type": "type B",
+    "manufacturer": "manufacturer C",
+    "price": "19.99"
+  },
+  {
+    "id": 4,
+    "sku": 140027,
+    "name": "product 4 name",
+    "description": "product 4 description",
+    "type": "type B",
+    "manufacturer": "manufacturer A",
+    "price": "17.99"
+  },
+  {
+    "id": 5,
+    "sku": 326926,
+    "name": "product 5 name",
+    "description": "product 5 description",
+    "type": "type C",
+    "manufacturer": "manufacturer B",
+    "price": "24.99"
+  },
+  {
+    "id": 6,
+    "sku": 27003,
+    "name": "product 6 name",
+    "description": "product 6 description",
+    "type": "type C",
+    "manufacturer": "manufacturer C",
+    "price": "14.99"
+  },
+  {
+    "id": 7,
+    "sku": 1111161,
+    "name": "product 7 name",
+    "description": "product 7 description",
+    "type": "type C",
+    "manufacturer": "manufacturer D",
+    "price": "5.99"
+  },
+  {
+    "id": 8,
+    "sku": 8675309,
+    "name": "product 8 name",
+    "description": "product 8 description",
+    "type": "type D",
+    "manufacturer": "manufacturer A",
+    "price": "12.99"
+  },
+  {
+    "id": 9,
+    "sku": 18600,
+    "name": "product 9 name",
+    "description": "product 9 description",
+    "type": "type D",
+    "manufacturer": "manufacturer D",
+    "price": "7.99"
+  },
+  {
+    "id": 10,
+    "sku": 18609,
+    "name": "product 10 name",
+    "description": "product 10 description",
+    "type": "type E",
+    "manufacturer": "manufacturer C",
+    "price": "29.99"
+  }
+]
