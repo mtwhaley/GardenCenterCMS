@@ -58,15 +58,26 @@ export default function App() {
         manufacturers={uniqueManufacturers}
         onChangeFilters={handleChangeFilters}
       />
-      <Products products={products} />
+      <Products products={products} filters={filters} />
     </>
   );
 }
 
-function Products({ products }) {
+function Products({ products, filters }) {
   return (
     <>
       {products.map((product) => {
+        if (
+          filters.typeFilter.toLowerCase() != "any" &&
+          product.type != filters.typeFilter
+        )
+          return;
+        if (
+          filters.manufacturerFilter.toLowerCase() != "any" &&
+          product.manufacturer != filters.manufacturerFilter
+        )
+          return;
+
         return <ProductCard product={product} />;
       })}
     </>
