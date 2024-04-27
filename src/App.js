@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { getAll, getById } from "./MockAPI/MockAPI";
-import { ProductCard } from "./ProductCard";
 import { FilterBar } from "./FilterBar";
+import { Products } from "./Products";
+import { SearchBar } from "./SearchBar";
 
 export default function App() {
   const allProducts = getAll();
@@ -62,52 +63,3 @@ export default function App() {
     </>
   );
 }
-
-function Products({ products, filters }) {
-  return (
-    <>
-      {products.map((product) => {
-        if (
-          filters.typeFilter.toLowerCase() != "any" &&
-          product.type != filters.typeFilter
-        )
-          return;
-        if (
-          filters.manufacturerFilter.toLowerCase() != "any" &&
-          product.manufacturer != filters.manufacturerFilter
-        )
-          return;
-
-        return <ProductCard product={product} />;
-      })}
-    </>
-  );
-}
-
-const SearchBar = ({ onSearch, search, setSearch }) => {
-  const handleInputChange = (e) => {
-    const newSearch = { ...search };
-    newSearch[e.target.name] = e.target.value;
-    setSearch(newSearch);
-  };
-
-  return (
-    <form className="search-bar">
-      <input
-        name="query"
-        type="text"
-        placeholder="Search Products..."
-        value={search.query}
-        onChange={handleInputChange}
-      />
-      <select value={search.field} name="field" onChange={handleInputChange}>
-        <option value="sku">SKU</option>
-        <option value="name">Name</option>
-        <option value="description">Description</option>
-      </select>
-      <button type="submit" onClick={onSearch}>
-        Search
-      </button>
-    </form>
-  );
-};
