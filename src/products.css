@@ -18,12 +18,27 @@
   background-color: #0056b3; /* Slightly darker on hover */
 }
 
+.filter-bar {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+  padding-bottom: 1em;
+}
+
+.filter-bar span {
+  flex-grow: 1;
+  padding-right: 1em;
+}
+
+.selectLabel {
+  text-align: right;
+}
+
 .search-bar {
   display: flex;
   align-items: center;
   padding: 15px;
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 20px;
 }
 
 .search-bar input {
@@ -35,7 +50,8 @@
 }
 
 .search-bar select,
-.search-bar button {
+.search-bar button,
+.filter-bar select {
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 5px;
