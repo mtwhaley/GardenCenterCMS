@@ -1,7 +1,6 @@
 import "./products.css";
 
-export const ProductCard = ({ product, onEditClick }) => {
-  // Accept onEditClick prop
+export const ProductCard = ({ product, onEdit }) => {
   return (
     <div className="product-card">
       <h3>
@@ -17,7 +16,12 @@ export const ProductCard = ({ product, onEditClick }) => {
       <div>
         <strong>Price:</strong> ${product.price}
       </div>
-      <button className="edit-button" onClick={() => onEditClick(product.id)}>
+      <button
+        className="edit-button"
+        onClick={() => {
+          onEdit(product);
+        }}
+      >
         edit
       </button>
     </div>
