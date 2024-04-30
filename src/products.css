@@ -6,6 +6,7 @@
 }
 
 .edit-button {
+  float: right;
   background-color: #007bff; /* Example color */
   color: white;
   border: none;

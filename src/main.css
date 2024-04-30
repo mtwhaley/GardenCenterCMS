@@ -1,0 +1,13 @@
+.add {
+  text-align: right;
+  margin-bottom: 1em;
+}
+.add button {
+  font-size: 18px;
+  padding: 0.3em 0.5em 0.3em 0.5em;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
