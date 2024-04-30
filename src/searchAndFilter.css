@@ -1,0 +1,47 @@
+.search-bar .cancelSearch {
+  margin-left: 0;
+
+  margin-right: 10px;
+  border-radius: 0 5px 5px 0;
+  position: relative;
+  left: -2em;
+  width: 2em;
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+  padding-bottom: 1em;
+}
+
+.filter-bar span {
+  flex-grow: 1;
+  padding-right: 1em;
+}
+
+.selectLabel {
+  text-align: right;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.search-bar input {
+  flex-grow: 1; /* Input takes up available space */
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.search-bar select,
+.search-bar button,
+.filter-bar select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}

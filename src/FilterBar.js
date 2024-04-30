@@ -1,4 +1,6 @@
-export function FilterBar({ types, manufacturers, onChangeFilters }) {
+import { Children } from "react";
+
+export function FilterBar({ onChangeFilters, types, manufacturers }) {
   types = ["Any", ...types];
   manufacturers = ["Any", ...manufacturers];
   return (
