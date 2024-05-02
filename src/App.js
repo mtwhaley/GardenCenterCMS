@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { getAll, getById } from "./MockAPI/MockAPI";
+import { getAll, post, deleteProduct } from "./MockAPI/MockAPI";
 import { Products } from "./Products";
 import { ControlBar } from "./controlBar/ControlBar";
 import { EditForm } from "./forms/EditForm";
 import "./main.css";
+import { AddForm } from "./forms/AddForm";
+import { AddProduct } from "./AddProduct";
 
 export default function App() {
-  const allProducts = getAll();
+  const [allProducts, setAllProducts] = useState(getAll());
   const defaultProduct = {
     sku: undefined,
     name: "",
@@ -15,39 +17,66 @@ export default function App() {
     manufacturer: "",
     price: "",
   };
-  const [products, setProducts] = useState(allProducts);
+  const [visibleProducts, setVisibleProducts] = useState(allProducts);
+
+  const [search, setSearch] = useState({ query: "", field: "sku" });
   const [filters, setFilters] = useState({
     typeFilter: "Any",
     manufacturerFilter: "Any",
   });
+
   const [formStatus, setFormStatus] = useState(false);
   const [formProduct, setFormProduct] = useState(defaultProduct);
-
   const handleOpenEdit = (product) => {
     setFormProduct(product);
     setFormStatus(true);
   };
-
   const handleUpdate = (oldProduct, newProduct) => {
     oldProduct === defaultProduct
-      ? setProducts([newProduct, ...products])
-      : setProducts(
-          products.map((product) =>
+      ? setVisibleProducts([newProduct, ...visibleProducts])
+      : setVisibleProducts(
+          visibleProducts.map((product) =>
             product === oldProduct ? newProduct : product
           )
         );
   };
   const handleDelete = (product) => {
-    setProducts(products.filter((p) => p !== product));
+    deleteProduct(product.id);
+    setAllProducts(getAll());
   };
 
   const handleChangeFilters = (e) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
   };
 
+  const handleAddClick = () => {
+    setFormProduct(defaultProduct);
+    setFormStatus(true);
+  };
+
+  const handleAdd = (product) => {
+    post(product);
+    setAllProducts(getAll());
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!search.query) {
+      setAllProducts(allProducts);
+      return;
+    }
+    const filteredProducts = allProducts.filter((product) => {
+      return product[search.field]
+        .toString()
+        .toLowerCase()
+        .includes(search.query.toLowerCase());
+    });
+    setAllProducts(filteredProducts);
+  };
+
   const uniqueTypes = [];
   const uniqueManufacturers = [];
-  for (const product of products) {
+  for (const product of visibleProducts) {
     if (!uniqueTypes.includes(product.type)) uniqueTypes.push(product.type);
     if (!uniqueManufacturers.includes(product.manufacturer))
       uniqueManufacturers.push(product.manufacturer);
@@ -57,33 +86,43 @@ export default function App() {
 
   return (
     <>
-      {formStatus && (
-        <EditForm
-          onClose={() => {
-            setFormStatus(false);
-          }}
-          editingProduct={formProduct}
-          onUpdate={handleUpdate}
-          onDelete={handleDelete}
-        />
-      )}
+      {formStatus &&
+        (formProduct.sku === undefined ? (
+          <AddForm
+            onClose={() => {
+              setFormStatus(false);
+            }}
+            onAdd={handleAdd}
+            initialProduct={defaultProduct}
+          />
+        ) : (
+          <EditForm
+            onClose={() => {
+              setFormStatus(false);
+            }}
+            initialProduct={formProduct}
+            onUpdate={handleUpdate}
+            onDelete={handleDelete}
+          />
+        ))}
+
       <ControlBar
-        setProducts={setProducts}
-        allProducts={allProducts}
+        search={search}
+        setSearch={setSearch}
         onChangeFilters={handleChangeFilters}
         types={uniqueTypes}
         manufacturers={uniqueManufacturers}
+        handleSearch={handleSearch}
       />
-      <AddProduct />
-      <Products products={products} filters={filters} onEdit={handleOpenEdit} />
-    </>
-  );
-}
 
-function AddProduct() {
-  return (
-    <div className="add">
-      <button>+</button>
-    </div>
+      <AddProduct onAddClick={handleAddClick} />
+
+      <Products
+        query=""
+        allProducts={allProducts}
+        filters={filters}
+        onEdit={handleOpenEdit}
+      />
+    </>
   );
 }

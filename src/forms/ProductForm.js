@@ -1,9 +1,14 @@
 import { useState } from "react";
-
 import "./form.css";
 
-export function ProductForm({ onClose, onSubmit, editingProduct, onDelete }) {
-  const [updatedProduct, setUpdatedProduct] = useState({ ...editingProduct });
+export function ProductForm({
+  title,
+  onClose,
+  onSubmit,
+  fillProduct,
+  onDelete,
+}) {
+  const [updatedProduct, setUpdatedProduct] = useState({ ...fillProduct });
   const handleInputChange = (e) => {
     const newProduct = { ...updatedProduct };
     newProduct[e.target.name] = e.target.value;
@@ -15,7 +20,7 @@ export function ProductForm({ onClose, onSubmit, editingProduct, onDelete }) {
         <button className="closeForm" onClick={onClose}>
           &times;
         </button>
-        <h2>Edit Product</h2>
+        <h2>{title}</h2>
         <form
           className="productForm"
           onSubmit={(e) => {
@@ -26,33 +31,33 @@ export function ProductForm({ onClose, onSubmit, editingProduct, onDelete }) {
           <div className="inputs">
             <FormInput
               name="sku"
-              product={editingProduct}
+              product={fillProduct}
               onChange={handleInputChange}
               type="number"
             />
             <FormInput
               name="name"
-              product={editingProduct}
+              product={fillProduct}
               onChange={handleInputChange}
             />
             <FormInput
               name="description"
-              product={editingProduct}
+              product={fillProduct}
               onChange={handleInputChange}
             />
             <FormInput
               name="type"
-              product={editingProduct}
+              product={fillProduct}
               onChange={handleInputChange}
             />
             <FormInput
               name="manufacturer"
-              product={editingProduct}
+              product={fillProduct}
               onChange={handleInputChange}
             />
             <FormInput
               name="price"
-              product={editingProduct}
+              product={fillProduct}
               onChange={handleInputChange}
             />
           </div>
@@ -60,15 +65,19 @@ export function ProductForm({ onClose, onSubmit, editingProduct, onDelete }) {
             <button type="submit" className="confirmButton">
               Confirm
             </button>
-            <br></br>
-            <button
-              className="deleteButton"
-              onClick={() => {
-                onDelete(editingProduct);
-              }}
-            >
-              Delete
-            </button>
+            {onDelete && (
+              <>
+                <br></br>
+                <button
+                  className="deleteButton"
+                  onClick={() => {
+                    onDelete(fillProduct);
+                  }}
+                >
+                  Delete
+                </button>
+              </>
+            )}
           </div>
         </form>
       </div>
