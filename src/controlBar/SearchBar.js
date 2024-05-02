@@ -1,12 +1,12 @@
-export const SearchBar = ({ onSearch, search, setSearch, onResetSearch }) => {
+export const SearchBar = ({ onSearch, search, onResetSearch }) => {
   const handleInputChange = (e) => {
     const newSearch = { ...search };
     newSearch[e.target.name] = e.target.value;
-    setSearch(newSearch);
+    onSearch(newSearch);
   };
 
   return (
-    <form className="search-bar" onSubmit={onSearch}>
+    <form className="search-bar">
       <select value={search.field} name="field" onChange={handleInputChange}>
         <option value="sku">SKU</option>
         <option value="name">Name</option>

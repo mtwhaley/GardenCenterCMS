@@ -27,3 +27,16 @@ export const filterProductsBySearch = (allProducts, search) => {
       .includes(search.query.toLowerCase());
   });
 };
+
+export const validFilters = (products, filters) => {
+  const validity = { type: false, manufacturer: true };
+  for (const product in products) {
+    if (filters.typeFilter === product.type) {
+      validity.type = true;
+    }
+    if (filters.manufacturerFilter === product.manufacturer) {
+    }
+    if (validity.type && validity.manufacturer) break;
+  }
+  return validity;
+};

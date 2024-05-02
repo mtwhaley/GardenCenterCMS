@@ -45,8 +45,20 @@ export default function App() {
 
     setSearch({ ...search, query: "" });
   };
+  const handleSearch = (newSearch) => {
+    const validFilters = utils.validFilters(visibleProducts, filters);
+    if (!validFilters.type || !validFilters.manufacturer) {
+      const newFilters = { ...filters };
+      if (!validFilters.type) newFilters.typeFilter = "Any";
+      if (!validFilters.manufacturer) newFilters.manufacturerFilter = "Any";
+      setFilters(newFilters);
+    }
+
+    setSearch(newSearch);
+  };
 
   const visibleProducts = utils.filterProductsBySearch(allProducts, search);
+
   const uniques = utils.getUniques(visibleProducts);
 
   return (
@@ -64,7 +76,7 @@ export default function App() {
 
       <ControlBar
         search={search}
-        setSearch={setSearch}
+        onSearch={handleSearch}
         onResetSearch={handleResetSearch}
         onChangeFilters={handleChangeFilters}
         types={uniques.types}

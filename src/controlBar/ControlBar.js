@@ -5,7 +5,7 @@ import "./searchAndFilter.css";
 
 export function ControlBar({
   search,
-  setSearch,
+  onSearch,
   onChangeFilters,
   types,
   manufacturers,
@@ -15,7 +15,7 @@ export function ControlBar({
     <>
       <SearchBar
         search={search}
-        setSearch={setSearch}
+        onSearch={onSearch}
         onResetSearch={onResetSearch}
       />
       <FilterBar
