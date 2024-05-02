@@ -6,7 +6,7 @@ export const defaultProduct = {
   manufacturer: "",
   price: "",
 };
-export function getUniques(visibleProducts) {
+export const getUniques = (visibleProducts) => {
   const uniqueTypes = [];
   const uniqueManufacturers = [];
   for (const product of visibleProducts) {
@@ -17,13 +17,13 @@ export function getUniques(visibleProducts) {
     uniqueManufacturers.sort();
   }
   return { types: uniqueTypes, manufacturers: uniqueManufacturers };
-}
+};
 
-export function filterProductsBySearch(allProducts, search) {
+export const filterProductsBySearch = (allProducts, search) => {
   return allProducts.filter((product) => {
     return product[search.field]
       .toString()
       .toLowerCase()
       .includes(search.query.toLowerCase());
   });
-}
+};

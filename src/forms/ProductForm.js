@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./form.css";
+import { FormInput } from "./FormInput";
 
 export function ProductForm({ onClose, initialProduct, onDelete, onConfirm }) {
   const [updatedProduct, setUpdatedProduct] = useState({ ...initialProduct });
@@ -77,34 +78,6 @@ export function ProductForm({ onClose, initialProduct, onDelete, onConfirm }) {
           </div>
         </form>
       </div>
-    </div>
-  );
-}
-
-function FormInput({ name, onChange, product, type = "text" }) {
-  const label = name.charAt(0).toUpperCase() + name.slice(1);
-  const defaultValue = product[name];
-  return (
-    <Input
-      type={type}
-      label={label}
-      name={name}
-      defaultValue={defaultValue}
-      onChange={onChange}
-    />
-  );
-}
-function Input({ type, label, name, defaultValue, onChange }) {
-  return (
-    <div className="form-group">
-      <label>{label}:</label>
-      <input
-        type={type}
-        name={name}
-        defaultValue={defaultValue}
-        onChange={onChange}
-        required
-      />
     </div>
   );
 }
