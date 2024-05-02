@@ -15,9 +15,7 @@ export function ProductForm({ onClose, initialProduct, onDelete, onConfirm }) {
         <button className="closeForm" onClick={onClose}>
           &times;
         </button>
-        <h2>
-          {initialProduct.id == undefined ? "Add Product" : "Edit Product"}
-        </h2>
+        <h2>{initialProduct.id ? "Edit Product" : "Add Product"}</h2>
         <form
           className="productForm"
           onSubmit={(e) => {
