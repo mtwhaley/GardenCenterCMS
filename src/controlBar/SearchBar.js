@@ -7,6 +7,11 @@ export const SearchBar = ({ onSearch, search, setSearch, onResetSearch }) => {
 
   return (
     <form className="search-bar" onSubmit={onSearch}>
+      <select value={search.field} name="field" onChange={handleInputChange}>
+        <option value="sku">SKU</option>
+        <option value="name">Name</option>
+        <option value="description">Description</option>
+      </select>
       <input
         name="query"
         type="text"
@@ -17,12 +22,6 @@ export const SearchBar = ({ onSearch, search, setSearch, onResetSearch }) => {
       <button className="cancelSearch" onClick={onResetSearch}>
         &times;
       </button>
-      <select value={search.field} name="field" onChange={handleInputChange}>
-        <option value="sku">SKU</option>
-        <option value="name">Name</option>
-        <option value="description">Description</option>
-      </select>
-      <button onClick={onSearch}>Search</button>
     </form>
   );
 };

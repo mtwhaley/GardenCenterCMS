@@ -1,9 +1,9 @@
 import { ProductCard } from "./ProductCard";
 
-export function Products({ allProducts, filters, onEdit }) {
+export function Products({ visibleProducts, filters, onEdit }) {
   return (
     <>
-      {allProducts.map((product) => {
+      {visibleProducts.map((product) => {
         if (
           filters.typeFilter.toLowerCase() !== "any" &&
           product.type !== filters.typeFilter

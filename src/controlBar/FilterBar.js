@@ -3,7 +3,9 @@ export function FilterBar({ onChangeFilters, types, manufacturers }) {
   manufacturers = ["Any", ...manufacturers];
   return (
     <form className="filter-bar">
-      <span>Filter Results:</span>
+      <span> </span>
+      <span> </span>
+      <span> </span>
       <span className="selectLabel">Product Type:</span>
       <select onChange={onChangeFilters} name="typeFilter">
         {types.map((type) => {

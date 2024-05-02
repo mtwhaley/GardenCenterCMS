@@ -9,19 +9,14 @@ export function ControlBar({
   onChangeFilters,
   types,
   manufacturers,
-  handleSearch,
+  onResetSearch,
 }) {
-  const handleResetSearch = (e) => {
-    e.preventDefault();
-    setSearch({ ...search, query: "" });
-  };
   return (
     <>
       <SearchBar
         search={search}
         setSearch={setSearch}
-        onSearch={handleSearch}
-        onResetSearch={handleResetSearch}
+        onResetSearch={onResetSearch}
       />
       <FilterBar
         onChangeFilters={onChangeFilters}

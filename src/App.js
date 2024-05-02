@@ -2,9 +2,7 @@ import { useState } from "react";
 import { getAll, post, put, deleteProduct } from "./MockAPI/MockAPI";
 import { Products } from "./Products";
 import { ControlBar } from "./controlBar/ControlBar";
-import { EditForm } from "./forms/EditForm";
 import "./main.css";
-import { AddForm } from "./forms/AddForm";
 import { AddProduct } from "./AddProduct";
 import { ProductForm } from "./forms/ProductForm";
 
@@ -18,7 +16,6 @@ export default function App() {
     manufacturer: "",
     price: "",
   };
-  const [visibleProducts, setVisibleProducts] = useState(allProducts);
 
   const [search, setSearch] = useState({ query: "", field: "sku" });
   const [filters, setFilters] = useState({
@@ -33,7 +30,7 @@ export default function App() {
     setFormStatus(true);
   };
   const handleForm = (oldProduct, newProduct) => {
-    oldProduct === defaultProduct
+    oldProduct.id === undefined
       ? post(newProduct)
       : put(newProduct, oldProduct.id);
     setAllProducts(getAll());
@@ -52,24 +49,21 @@ export default function App() {
     setFormStatus(true);
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (!search.query) {
-      setAllProducts(allProducts);
-      return;
-    }
-    const filteredProducts = allProducts.filter((product) => {
-      return product[search.field]
-        .toString()
-        .toLowerCase()
-        .includes(search.query.toLowerCase());
-    });
-    setAllProducts(filteredProducts);
+  const handleResetSearch = (e) => {
+    e && e.preventDefault();
+
+    setSearch({ ...search, query: "" });
   };
+  const visibleProducts2 = allProducts.filter((product) => {
+    return product[search.field]
+      .toString()
+      .toLowerCase()
+      .includes(search.query.toLowerCase());
+  });
 
   const uniqueTypes = [];
   const uniqueManufacturers = [];
-  for (const product of visibleProducts) {
+  for (const product of visibleProducts2) {
     if (!uniqueTypes.includes(product.type)) uniqueTypes.push(product.type);
     if (!uniqueManufacturers.includes(product.manufacturer))
       uniqueManufacturers.push(product.manufacturer);
@@ -93,17 +87,15 @@ export default function App() {
       <ControlBar
         search={search}
         setSearch={setSearch}
+        onResetSearch={handleResetSearch}
         onChangeFilters={handleChangeFilters}
         types={uniqueTypes}
         manufacturers={uniqueManufacturers}
-        handleSearch={handleSearch}
       />
-
       <AddProduct onAddClick={handleAddClick} />
 
       <Products
-        query=""
-        allProducts={allProducts}
+        visibleProducts={visibleProducts2}
         filters={filters}
         onEdit={handleOpenEdit}
       />
