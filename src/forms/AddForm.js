@@ -1,8 +1,8 @@
 import { ProductForm } from "./ProductForm";
 
-export function AddForm({ onClose, initialProduct, onAdd }) {
+export function AddForm({ onClose, initialProduct, onConfirm }) {
   const handleSubmit = (newProduct) => {
-    onAdd(newProduct);
+    onConfirm(initialProduct, newProduct);
     onClose();
   };
   return (

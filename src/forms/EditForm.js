@@ -1,9 +1,9 @@
 import { ProductForm } from "./ProductForm";
 
-export const EditForm = ({ onClose, initialProduct, onUpdate, onDelete }) => {
+export const EditForm = ({ onClose, initialProduct, onConfirm, onDelete }) => {
   const handleSubmit = (newProduct) => {
-    onUpdate(initialProduct, newProduct);
-    onClose(); // Close the popup after submission
+    onConfirm(initialProduct, newProduct);
+    onClose();
   };
 
   return (

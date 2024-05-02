@@ -16,7 +16,7 @@ export const put = (updated, id) => {
       if (product.id === id) return product;
     }
   };
-  repo[repo.indexOf(old)] = updated;
+  repo[repo.indexOf(old())] = updated;
 };
 
 export const create = (newObj) => {
@@ -26,6 +26,8 @@ export const create = (newObj) => {
 };
 
 export const post = (product) => {
+  console.log(product);
   const fullProduct = create(product);
   repo = [fullProduct, ...repo];
+  console.log(repo);
 };

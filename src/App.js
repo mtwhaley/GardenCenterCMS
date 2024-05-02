@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getAll, post, deleteProduct } from "./MockAPI/MockAPI";
+import { getAll, post, put, deleteProduct } from "./MockAPI/MockAPI";
 import { Products } from "./Products";
 import { ControlBar } from "./controlBar/ControlBar";
 import { EditForm } from "./forms/EditForm";
@@ -31,14 +31,11 @@ export default function App() {
     setFormProduct(product);
     setFormStatus(true);
   };
-  const handleUpdate = (oldProduct, newProduct) => {
+  const handleForm = (oldProduct, newProduct) => {
     oldProduct === defaultProduct
-      ? setVisibleProducts([newProduct, ...visibleProducts])
-      : setVisibleProducts(
-          visibleProducts.map((product) =>
-            product === oldProduct ? newProduct : product
-          )
-        );
+      ? post(newProduct)
+      : put(newProduct, oldProduct.id);
+    setAllProducts(getAll());
   };
   const handleDelete = (product) => {
     deleteProduct(product.id);
@@ -52,11 +49,6 @@ export default function App() {
   const handleAddClick = () => {
     setFormProduct(defaultProduct);
     setFormStatus(true);
-  };
-
-  const handleAdd = (product) => {
-    post(product);
-    setAllProducts(getAll());
   };
 
   const handleSearch = (e) => {
@@ -92,7 +84,7 @@ export default function App() {
             onClose={() => {
               setFormStatus(false);
             }}
-            onAdd={handleAdd}
+            onConfirm={handleForm}
             initialProduct={defaultProduct}
           />
         ) : (
@@ -101,7 +93,7 @@ export default function App() {
               setFormStatus(false);
             }}
             initialProduct={formProduct}
-            onUpdate={handleUpdate}
+            onConfirm={handleForm}
             onDelete={handleDelete}
           />
         ))}
