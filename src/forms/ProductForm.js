@@ -22,8 +22,8 @@ export function ProductForm({ onClose, initialProduct, onDelete, onConfirm }) {
           className="productForm"
           onSubmit={(e) => {
             e.preventDefault();
-            onConfirm(initialProduct,updatedProduct);
-            onClose()
+            onConfirm(initialProduct, updatedProduct);
+            onClose();
           }}
         >
           <div className="inputs">
@@ -63,7 +63,7 @@ export function ProductForm({ onClose, initialProduct, onDelete, onConfirm }) {
             <button type="submit" className="confirmButton">
               Confirm
             </button>
-            {onDelete && (
+            {initialProduct.id && (
               <>
                 <br></br>
                 <button

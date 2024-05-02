@@ -73,10 +73,11 @@
   float: right;
   margin: 0;
   position: relative;
-  right: calc(-16px);
+  right: calc(-15px);
   border: none;
   background-color: transparent;
   font-size: 20px;
+  width: 1.2em;
 }
 
 .closeForm:hover {
