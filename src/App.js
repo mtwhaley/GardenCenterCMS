@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getAll, post, put, deleteProduct } from "./MockAPI/MockAPI";
+import { GET, POST, PUT, DELETE } from "./APICalls";
 import { Products } from "./productList/Products";
 import { ControlBar } from "./controlBar/ControlBar";
 import "./main.css";
@@ -8,7 +8,7 @@ import { ProductForm } from "./forms/ProductForm";
 import * as utils from "./Utilities.js";
 
 export default function App() {
-  const [allProducts, setAllProducts] = useState(getAll());
+  const [allProducts, setAllProducts] = useState(GET());
   const [search, setSearch] = useState({ query: "", field: "sku" });
   const [filters, setFilters] = useState({
     typeFilter: "Any",
@@ -17,28 +17,27 @@ export default function App() {
   const [formStatus, setFormStatus] = useState(false);
   const [formProduct, setFormProduct] = useState(utils.defaultProduct);
 
-  const handleOpenEdit = (product) => {
-    setFormProduct(product);
-    setFormStatus(true);
-  };
+  //functions with API interaction
   const handleForm = (oldProduct, newProduct) => {
     oldProduct.id === undefined
-      ? post(newProduct)
-      : put(newProduct, oldProduct.id);
-    setAllProducts(getAll());
+      ? POST(newProduct)
+      : PUT(newProduct, oldProduct.id);
+    setAllProducts(GET());
   };
   const handleDelete = (product) => {
-    deleteProduct(product.id);
-    setAllProducts(getAll());
+    DELETE(product.id);
+    setAllProducts(GET());
   };
 
+  //forms
+  const handleOpenForm = (product) => {
+    product ? setFormProduct(product) : setFormProduct(utils.defaultProduct);
+    setFormStatus(true);
+  };
+
+  //filters
   const handleChangeFilters = (e) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
-  };
-
-  const handleAddClick = () => {
-    setFormProduct(utils.defaultProduct);
-    setFormStatus(true);
   };
 
   const handleResetSearch = (e) => {
@@ -71,12 +70,12 @@ export default function App() {
         types={uniques.types}
         manufacturers={uniques.manufacturers}
       />
-      <AddProduct onAddClick={handleAddClick} />
+      <AddProduct onAddClick={handleOpenForm} />
 
       <Products
         visibleProducts={visibleProducts}
         filters={filters}
-        onEdit={handleOpenEdit}
+        onEdit={handleOpenForm}
       />
     </>
   );
