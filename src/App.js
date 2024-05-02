@@ -1,30 +1,22 @@
 import { useState } from "react";
 import { getAll, post, put, deleteProduct } from "./MockAPI/MockAPI";
-import { Products } from "./Products";
+import { Products } from "./productList/Products";
 import { ControlBar } from "./controlBar/ControlBar";
 import "./main.css";
 import { AddProduct } from "./AddProduct";
 import { ProductForm } from "./forms/ProductForm";
+import * as utils from "./Utilities.js";
 
 export default function App() {
   const [allProducts, setAllProducts] = useState(getAll());
-  const defaultProduct = {
-    sku: undefined,
-    name: "",
-    description: "",
-    type: "",
-    manufacturer: "",
-    price: "",
-  };
-
   const [search, setSearch] = useState({ query: "", field: "sku" });
   const [filters, setFilters] = useState({
     typeFilter: "Any",
     manufacturerFilter: "Any",
   });
-
   const [formStatus, setFormStatus] = useState(false);
-  const [formProduct, setFormProduct] = useState(defaultProduct);
+  const [formProduct, setFormProduct] = useState(utils.defaultProduct);
+
   const handleOpenEdit = (product) => {
     setFormProduct(product);
     setFormStatus(true);
@@ -45,7 +37,7 @@ export default function App() {
   };
 
   const handleAddClick = () => {
-    setFormProduct(defaultProduct);
+    setFormProduct(utils.defaultProduct);
     setFormStatus(true);
   };
 
@@ -54,22 +46,9 @@ export default function App() {
 
     setSearch({ ...search, query: "" });
   };
-  const visibleProducts2 = allProducts.filter((product) => {
-    return product[search.field]
-      .toString()
-      .toLowerCase()
-      .includes(search.query.toLowerCase());
-  });
 
-  const uniqueTypes = [];
-  const uniqueManufacturers = [];
-  for (const product of visibleProducts2) {
-    if (!uniqueTypes.includes(product.type)) uniqueTypes.push(product.type);
-    if (!uniqueManufacturers.includes(product.manufacturer))
-      uniqueManufacturers.push(product.manufacturer);
-    uniqueTypes.sort();
-    uniqueManufacturers.sort();
-  }
+  const visibleProducts = utils.filterProductsBySearch(allProducts, search);
+  const uniques = utils.getUniques(visibleProducts);
 
   return (
     <>
@@ -89,13 +68,13 @@ export default function App() {
         setSearch={setSearch}
         onResetSearch={handleResetSearch}
         onChangeFilters={handleChangeFilters}
-        types={uniqueTypes}
-        manufacturers={uniqueManufacturers}
+        types={uniques.types}
+        manufacturers={uniques.manufacturers}
       />
       <AddProduct onAddClick={handleAddClick} />
 
       <Products
-        visibleProducts={visibleProducts2}
+        visibleProducts={visibleProducts}
         filters={filters}
         onEdit={handleOpenEdit}
       />
