@@ -6,6 +6,7 @@ import { EditForm } from "./forms/EditForm";
 import "./main.css";
 import { AddForm } from "./forms/AddForm";
 import { AddProduct } from "./AddProduct";
+import { ProductForm } from "./forms/ProductForm";
 
 export default function App() {
   const [allProducts, setAllProducts] = useState(getAll());
@@ -78,25 +79,16 @@ export default function App() {
 
   return (
     <>
-      {formStatus &&
-        (formProduct.sku === undefined ? (
-          <AddForm
-            onClose={() => {
-              setFormStatus(false);
-            }}
-            onConfirm={handleForm}
-            initialProduct={defaultProduct}
-          />
-        ) : (
-          <EditForm
-            onClose={() => {
-              setFormStatus(false);
-            }}
-            initialProduct={formProduct}
-            onConfirm={handleForm}
-            onDelete={handleDelete}
-          />
-        ))}
+      {formStatus && (
+        <ProductForm
+          onClose={() => {
+            setFormStatus(false);
+          }}
+          initialProduct={formProduct}
+          onConfirm={handleForm}
+          onDelete={handleDelete}
+        />
+      )}
 
       <ControlBar
         search={search}
