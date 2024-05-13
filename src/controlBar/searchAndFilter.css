@@ -1,19 +1,19 @@
-.search-bar .cancelSearch {
-  margin-left: 0;
-
-  margin-right: 10px;
-  border-radius: 0 5px 5px 0;
-  position: relative;
-  left: -2em;
-  width: 2em;
-}
-
 .filter-bar {
-  display: flex;
   align-items: center;
   border-bottom: 1px solid #ddd;
+  display: flex;
   margin-bottom: 20px;
   padding-bottom: 1em;
+}
+
+.search-bar {
+  align-items: center;
+  display: flex;
+  padding: 15px;
+}
+
+.selectLabel {
+  text-align: right;
 }
 
 .filter-bar span {
@@ -21,28 +21,28 @@
   padding-right: 1em;
 }
 
-.selectLabel {
-  text-align: right;
-}
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-}
-
 .search-bar input {
-  flex-grow: 1; /* Input takes up available space */
-  padding: 8px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  flex-grow: 1; /* Input takes up available space */
+  padding: 8px;
 }
 
 .search-bar select,
 .search-bar button,
 .filter-bar select {
-  padding: 8px;
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-right: 1em;
+  padding: 8px;
+}
+
+.search-bar .cancelSearch {
+  border-radius: 0 5px 5px 0;
+  left: -2em;
+  margin-left: 0;
+
+  margin-right: 10px;
+  position: relative;
+  width: 2em;
 }

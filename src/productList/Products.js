@@ -5,17 +5,19 @@ export function Products({ visibleProducts, filters, onEdit }) {
     <>
       {visibleProducts.map((product) => {
         if (
-          filters.typeFilter.toLowerCase() !== "any" &&
-          product.type !== filters.typeFilter
+          filters.type.toLowerCase() !== "any" &&
+          product.type !== filters.type
         )
           return <></>;
         if (
-          filters.manufacturerFilter.toLowerCase() !== "any" &&
-          product.manufacturer !== filters.manufacturerFilter
+          filters.manufacturer.toLowerCase() !== "any" &&
+          product.manufacturer !== filters.manufacturer
         )
           return <></>;
 
-        return <ProductCard product={product} onEdit={onEdit} />;
+        return (
+          <ProductCard product={product} onEdit={onEdit} key={product.sku} />
+        );
       })}
     </>
   );

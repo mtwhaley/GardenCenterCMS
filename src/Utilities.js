@@ -1,3 +1,9 @@
+export const statusCodeMessages = {
+  404: "non-existent product id",
+  409: "sku is already in use by another product",
+  400: "invalid product submitted",
+};
+
 export const defaultProduct = {
   sku: undefined,
   name: "",

@@ -2,12 +2,18 @@ import { useState } from "react";
 import "./form.css";
 import { FormInput } from "./FormInput";
 
-export function ProductForm({ onClose, initialProduct, onDelete, onConfirm }) {
+export function ProductForm({ onClose, initialProduct, onAction }) {
   const [updatedProduct, setUpdatedProduct] = useState({ ...initialProduct });
   const handleInputChange = (e) => {
     const newProduct = { ...updatedProduct };
     newProduct[e.target.name] = e.target.value;
     setUpdatedProduct(newProduct);
+  };
+
+  const handleButtons = (e) => {
+    e.preventDefault();
+    onAction(e, initialProduct, updatedProduct);
+    onClose();
   };
 
   return (
@@ -17,20 +23,14 @@ export function ProductForm({ onClose, initialProduct, onDelete, onConfirm }) {
           &times;
         </button>
         <h2>{initialProduct.id ? "Edit Product" : "Add Product"}</h2>
-        <form
-          className="productForm"
-          onSubmit={(e) => {
-            e.preventDefault();
-            onConfirm(initialProduct, updatedProduct);
-            onClose();
-          }}
-        >
+        <form className="productForm">
           <div className="inputs">
             <FormInput
               name="sku"
               product={initialProduct}
               onChange={handleInputChange}
               type="number"
+              focus
             />
             <FormInput
               name="name"
@@ -59,7 +59,12 @@ export function ProductForm({ onClose, initialProduct, onDelete, onConfirm }) {
             />
           </div>
           <div className="formButtons">
-            <button type="submit" className="confirmButton">
+            <button
+              type="submit"
+              className="confirmButton"
+              name="confirm"
+              onClick={handleButtons}
+            >
               Confirm
             </button>
             {initialProduct.id && (
@@ -67,9 +72,8 @@ export function ProductForm({ onClose, initialProduct, onDelete, onConfirm }) {
                 <br></br>
                 <button
                   className="deleteButton"
-                  onClick={() => {
-                    onDelete(initialProduct);
-                  }}
+                  name="delete"
+                  onClick={handleButtons}
                 >
                   Delete
                 </button>

@@ -1,27 +1,20 @@
-import { useState } from "react";
 import { FilterBar } from "./FilterBar";
 import { SearchBar } from "./SearchBar";
 import "./searchAndFilter.css";
 
-export function ControlBar({
-  search,
-  onSearch,
-  onChangeFilters,
-  types,
-  manufacturers,
-  onResetSearch,
-}) {
+export function ControlBar({ search, uniques, searchFunctions }) {
   return (
     <>
       <SearchBar
         search={search}
-        onSearch={onSearch}
-        onResetSearch={onResetSearch}
+        onSearch={searchFunctions.onSearch}
+        onResetSearch={searchFunctions.onResetSearch}
       />
       <FilterBar
-        onChangeFilters={onChangeFilters}
-        types={types}
-        manufacturers={manufacturers}
+        onChangeFilters={searchFunctions.onChangeFilters}
+        types={uniques.types}
+        manufacturers={uniques.manufacturers}
+        search={search}
       />
     </>
   );

@@ -1,4 +1,4 @@
-export function FilterBar({ onChangeFilters, types, manufacturers }) {
+export function FilterBar({ onChangeFilters, types, manufacturers, search }) {
   types = ["Any", ...types];
   manufacturers = ["Any", ...manufacturers];
   return (
@@ -7,15 +7,31 @@ export function FilterBar({ onChangeFilters, types, manufacturers }) {
       <span> </span>
       <span> </span>
       <span className="selectLabel">Product Type:</span>
-      <select onChange={onChangeFilters} name="typeFilter">
+      <select onChange={onChangeFilters} name="type">
         {types.map((type) => {
-          return <option value={type}>{type}</option>;
+          return (
+            <option
+              value={type}
+              key={type}
+              selected={type === search.filters.type}
+            >
+              {type}
+            </option>
+          );
         })}
       </select>
       <span className="selectLabel">Manufacturer:</span>
-      <select onChange={onChangeFilters} name="manufacturerFilter">
+      <select onChange={onChangeFilters} name="manufacturer">
         {manufacturers.map((manufacturer) => {
-          return <option value={manufacturer}>{manufacturer}</option>;
+          return (
+            <option
+              value={manufacturer}
+              key={manufacturer}
+              selected={manufacturer === search.filters.manufacturer}
+            >
+              {manufacturer}
+            </option>
+          );
         })}
       </select>
     </form>
