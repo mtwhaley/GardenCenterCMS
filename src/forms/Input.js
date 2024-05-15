@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export function Input({ type, label, name, defaultValue, onChange, focus }) {
   return (
     <div className="form-group">
@@ -13,3 +15,12 @@ export function Input({ type, label, name, defaultValue, onChange, focus }) {
     </div>
   );
 }
+
+Input.propTypes = {
+  type: PropTypes.string,
+  label: PropTypes.string,
+  name: PropTypes.string,
+  defaultValue: PropTypes.string,
+  onChange: PropTypes.func,
+  focus: PropTypes.bool,
+};

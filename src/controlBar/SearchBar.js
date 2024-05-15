@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const SearchBar = ({ onSearch, search, onResetSearch }) => {
   const handleInputChange = (e) => {
     const newSearch = { ...search };
@@ -24,4 +26,10 @@ export const SearchBar = ({ onSearch, search, onResetSearch }) => {
       </button>
     </form>
   );
+};
+
+SearchBar.propTypes = {
+  onSearch: PropTypes.func,
+  search: PropTypes.object,
+  onResetSearch: PropTypes.func,
 };

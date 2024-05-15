@@ -41,6 +41,7 @@ export const validFilters = (products, filters) => {
       validity.type = true;
     }
     if (filters.manufacturerFilter === product.manufacturer) {
+      validity.manufacturer = true;
     }
     if (validity.type && validity.manufacturer) break;
   }

@@ -15,7 +15,7 @@ export const GET = async () => {
       res.data = data;
       return res;
     })
-    .catch((error) => {
+    .catch(() => {
       return undefined;
     });
 };
@@ -58,7 +58,7 @@ export const POST = async (product) => {
       }
       return response;
     })
-    .catch((error) => {
+    .catch(() => {
       return undefined;
     });
 };

@@ -1,4 +1,5 @@
 import { ProductCard } from "./ProductCard";
+import PropTypes from "prop-types";
 
 export function Products({ visibleProducts, filters, onEdit }) {
   return (
@@ -22,3 +23,9 @@ export function Products({ visibleProducts, filters, onEdit }) {
     </>
   );
 }
+
+Products.propTypes = {
+  visibleProducts: PropTypes.array,
+  filters: PropTypes.object,
+  onEdit: PropTypes.func,
+};

@@ -1,4 +1,5 @@
 import "./addProduct.css";
+import PropTypes from "prop-types";
 
 export function AddProduct({ onAddClick }) {
   return (
@@ -14,3 +15,7 @@ export function AddProduct({ onAddClick }) {
     </div>
   );
 }
+
+AddProduct.propTypes = {
+  onAddClick: PropTypes.func,
+};

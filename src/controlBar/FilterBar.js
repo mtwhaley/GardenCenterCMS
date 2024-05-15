@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export function FilterBar({ onChangeFilters, types, manufacturers, search }) {
   types = ["Any", ...types];
   manufacturers = ["Any", ...manufacturers];
@@ -37,3 +39,10 @@ export function FilterBar({ onChangeFilters, types, manufacturers, search }) {
     </form>
   );
 }
+
+FilterBar.propTypes = {
+  onChangeFilters: PropTypes.func,
+  types: PropTypes.array,
+  manufacturers: PropTypes.array,
+  search: PropTypes.object,
+};

@@ -31,7 +31,6 @@ export default function useFetchProducts() {
 
   useEffect(() => {
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleForm = async (e, original, updated) => {

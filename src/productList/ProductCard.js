@@ -1,4 +1,5 @@
 import "./products.css";
+import PropTypes from "prop-types";
 
 export const ProductCard = ({ product, onEdit }) => {
   return (
@@ -24,4 +25,9 @@ export const ProductCard = ({ product, onEdit }) => {
       </p>
     </div>
   );
+};
+
+ProductCard.propTypes = {
+  product: PropTypes.object,
+  onEdit: PropTypes.func,
 };

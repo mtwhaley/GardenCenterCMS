@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./form.css";
 import { FormInput } from "./FormInput";
+import PropTypes from "prop-types";
 
 export function ProductForm({ onClose, initialProduct, onAction }) {
   const [updatedProduct, setUpdatedProduct] = useState({ ...initialProduct });
@@ -85,3 +86,9 @@ export function ProductForm({ onClose, initialProduct, onAction }) {
     </div>
   );
 }
+
+ProductForm.propTypes = {
+  onClose: PropTypes.func,
+  initialProduct: PropTypes.object,
+  onAction: PropTypes.func,
+};

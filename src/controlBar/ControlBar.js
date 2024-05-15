@@ -1,6 +1,7 @@
 import { FilterBar } from "./FilterBar";
 import { SearchBar } from "./SearchBar";
 import "./searchAndFilter.css";
+import PropTypes from "prop-types";
 
 export function ControlBar({ search, uniques, searchFunctions }) {
   return (
@@ -19,3 +20,9 @@ export function ControlBar({ search, uniques, searchFunctions }) {
     </>
   );
 }
+
+ControlBar.propTypes = {
+  search: PropTypes.object,
+  uniques: PropTypes.object,
+  searchFunctions: PropTypes.object,
+};

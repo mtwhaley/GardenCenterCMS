@@ -2,6 +2,7 @@ import * as utils from "../Utilities.js";
 import { ConnectionError } from "./ConnectionError.js";
 import { StatusError } from "./StatusError.js";
 import "./errors.css";
+import PropTypes from "prop-types";
 
 export function Error({ status, onClose }) {
   let message = "";
@@ -24,3 +25,8 @@ export function Error({ status, onClose }) {
     </>
   );
 }
+
+Error.propTypes = {
+  status: PropTypes.object,
+  onClose: PropTypes.func,
+};

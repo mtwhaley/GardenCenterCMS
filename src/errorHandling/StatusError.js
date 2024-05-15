@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export function StatusError({ message, onClose }) {
   return (
     <div className="pop-down">
@@ -10,3 +12,8 @@ export function StatusError({ message, onClose }) {
     </div>
   );
 }
+
+StatusError.propTypes = {
+  message: PropTypes.string,
+  onClose: PropTypes.func,
+};

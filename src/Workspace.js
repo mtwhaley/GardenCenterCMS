@@ -2,6 +2,7 @@ import { Products } from "./productList/Products.js";
 import { ControlBar } from "./controlBar/ControlBar.js";
 import { AddProduct } from "./addProduct/AddProduct.js";
 import useSearch from "./customHooks/useSearch.js";
+import PropTypes from "prop-types";
 import * as utils from "./Utilities.js";
 
 export function Workspace({ onOpenForm, allProducts }) {
@@ -26,3 +27,8 @@ export function Workspace({ onOpenForm, allProducts }) {
     </>
   );
 }
+
+Workspace.propTypes = {
+  onOpenForm: PropTypes.func,
+  allProducts: PropTypes.array,
+};
